@@ -49,6 +49,7 @@ namespace Resource.Builder
 
             var content = await response.Content.ReadAsStringAsync();
             _content = content;
+            client.Dispose();
         }
 
 

@@ -45,6 +45,7 @@ namespace parser
                 // Url = "https://medium.com/@ergojdev/a-simple-web-scraper-in-30-minutes-with-net-core-and-anglesharp-part-1-51fdf5ecafb1"
                 // Url = "https://www.youtube.com/watch?v=hWEh8EQCsPg&ab_channel=F1GRID"
                 Url = "https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-5"
+                // Url = "ub.com/WolfgangOfner/.NetCoreRepositoryAndUnitOfWorkPattern"
             };
 
             var builder = new Builder(input);
