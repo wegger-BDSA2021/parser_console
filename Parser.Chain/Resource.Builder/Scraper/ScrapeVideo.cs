@@ -14,10 +14,7 @@ namespace Resource.Builder
         protected override async Task<ICollection<string>> GetTags(HtmlDocument _doc)
         {
             var _details = await GetVideoDetails();
-            var test = new List<string>();
-            test.Add(_details.PublicationDate.ToString());
-
-            return test;
+            return _details.Tags;
         }
 
         private async Task<VideoDetails> GetVideoDetails()
@@ -46,10 +43,10 @@ namespace Resource.Builder
                         Description = youTubeVideo.Snippet.Description,
                         Title = youTubeVideo.Snippet.Title,
                         ChannelTitle = youTubeVideo.Snippet.ChannelTitle,
-                        PublicationDate = youTubeVideo.Snippet.PublishedAt
+                        PublicationDate = youTubeVideo.Snippet.PublishedAt,
+                        Tags = youTubeVideo.Snippet.Tags
                     };
 
-                    System.Console.WriteLine(details.Description);
                     return details;
                 }
                 else 
@@ -66,6 +63,7 @@ namespace Resource.Builder
             public string Title { get; set; }
             public string ChannelTitle { get; set; }
             public DateTime? PublicationDate { get; set; }
+            public IList<string> Tags { get; set; }
         }
     }
 }

@@ -29,10 +29,10 @@ namespace Resource.Builder
             return _builder.GetResult();
         }
 
-        public async Task<ResourceProduct> UpdateResource()
-        {
-            throw new NotImplementedException();
-        }
+        // public async Task<ResourceProduct> UpdateResource()
+        // {
+        //     throw new NotImplementedException();
+        // }
 
     }
 
