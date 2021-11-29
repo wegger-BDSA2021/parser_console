@@ -15,7 +15,8 @@ namespace Parser.Chain
 
             if (!isValid)
             {
-                return InvalidURL;
+                throw new Exception();
+                // return InvalidURL;
             }
 
             var host = uriResult.Host;
@@ -26,7 +27,7 @@ namespace Parser.Chain
             var httpStatusCode = response.StatusCode;
             if (httpStatusCode != System.Net.HttpStatusCode.OK)
             {
-                return CouldNotProcess;
+                throw new Exception();
             }
 
             var content = await response.Content.ReadAsStringAsync();
