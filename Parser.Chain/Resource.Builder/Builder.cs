@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -47,6 +48,9 @@ namespace Resource.Builder
                 throw new Exception();
             }
 
+            var lastModified = response.Headers.Date;
+            System.Console.WriteLine(lastModified);
+
             var content = await response.Content.ReadAsStringAsync();
             _content = content;
             client.Dispose();
@@ -73,7 +77,11 @@ namespace Resource.Builder
 
         public void SetOfficialDocumentation()
         {
-            if (_product.HostBaseUrl == "docs.microsoft.com")
+            var officials = new List<string>();
+            officials.Add("docs.microsoft.com");
+            officials.Add("www.uml-diagrams.org");
+
+            if (officials.Contains(_product.HostBaseUrl))
             {    
                 _product.IsOfficialDocumentation = true;
             }
@@ -96,9 +104,9 @@ namespace Resource.Builder
         }
 
         private bool IsVideo() => _product.IsVideo;
-        private static void TemplateClient(Template template, string content, ResourceProduct product) => template.Parse(content, product);
+        private void TemplateClient(Template template, string content, ResourceProduct product) => template.Parse(content, product);
 
-        public void ScrapeData()
+        public void ScrapeTagsAndDate()
         {
             if (IsVideo())
             {

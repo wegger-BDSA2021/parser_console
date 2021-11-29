@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 
 namespace Resource.Builder
@@ -23,9 +24,14 @@ namespace Resource.Builder
             _builder.SetInitialRating();
             _builder.SetOfficialDocumentation();
             _builder.CheckForVideo();
-            _builder.ScrapeData();
+            _builder.ScrapeTagsAndDate();
 
             return _builder.GetResult();
+        }
+
+        public async Task<ResourceProduct> UpdateResource()
+        {
+            throw new NotImplementedException();
         }
 
     }

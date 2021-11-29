@@ -31,11 +31,6 @@ namespace parser
 
         async static Task MainAsync(string[] args)
         {
-            // tags = new List<string>();
-            // for (int i = 0; i < 10000000; i++)
-            // {
-            //     tags.Add(i.ToString() + "aaabbbbabbababababbababab");
-            // }
             var input = new InputFromAPI{
                 Description = "test yo yo",
                 InitialRating = 3,
@@ -44,8 +39,9 @@ namespace parser
                 UserId = 1,
                 // Url = "https://medium.com/@ergojdev/a-simple-web-scraper-in-30-minutes-with-net-core-and-anglesharp-part-1-51fdf5ecafb1"
                 // Url = "https://www.youtube.com/watch?v=hWEh8EQCsPg&ab_channel=F1GRID"
-                Url = "https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-5"
+                // Url = "https://docs.microsoft.com/en-us/aspnet/web-api/overview/data/using-web-api-with-entity-framework/part-5"
                 // Url = "ub.com/WolfgangOfner/.NetCoreRepositoryAndUnitOfWorkPattern"
+                Url = "https://www.uml-diagrams.org/component.html"
             };
 
             var builder = new Builder(input);
@@ -149,15 +145,6 @@ namespace parser
                 }
             );
 
-            // foreach (var tag in tags)
-            // {
-            //     if (cleanedText.Contains(tag.ToLower()))
-            //     {
-            //         foundTags.Add(tag);
-            //     }
-            // }
-
-            // return foundTags.ToList();
             return foundTagsConcurrent.ToList();
         }
 
