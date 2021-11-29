@@ -72,7 +72,7 @@ namespace Resource.Builder
 
         public void SetOfficialDocumentation()
         {
-            if (_product.HostBaseUrl == "www.docs.microsoft.com")
+            if (_product.HostBaseUrl == "docs.microsoft.com")
             {    
                 _product.IsOfficialDocumentation = true;
             }
@@ -84,7 +84,7 @@ namespace Resource.Builder
 
         public void CheckForVideo()
         {
-            if (_product.HostBaseUrl == "www.youtube.com")
+            if (_product.HostBaseUrl == "youtube.com")
             {
                 _product.IsVideo = true;
             }
@@ -94,12 +94,21 @@ namespace Resource.Builder
             }
         }
 
-        public bool IsVideo() => _product.IsVideo;
+        private bool IsVideo() => _product.IsVideo;
+        private static void TemplateClient(Template template, string content, ResourceProduct product) => template.Parse(content, product);
 
         public void ScrapeData()
         {
-            
+            if (IsVideo())
+            {
+                TemplateClient(new ScrapeVideo(), _content, _product);
+            }
+            else 
+            {
+                TemplateClient(new ScrapeArticle(), _content, _product);
+            }
         }
+
 
     }
 
