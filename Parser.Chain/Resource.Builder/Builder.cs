@@ -48,9 +48,6 @@ namespace Resource.Builder
                 throw new Exception();
             }
 
-            var lastModified = response.Headers.Date;
-            System.Console.WriteLine(lastModified);
-
             var content = await response.Content.ReadAsStringAsync();
             _content = content;
             client.Dispose();
@@ -93,7 +90,7 @@ namespace Resource.Builder
 
         public void CheckForVideo()
         {
-            if (_product.HostBaseUrl == "youtube.com")
+            if (_product.HostBaseUrl == "www.youtube.com")
             {
                 _product.IsVideo = true;
             }
@@ -104,17 +101,17 @@ namespace Resource.Builder
         }
 
         private bool IsVideo() => _product.IsVideo;
-        private void TemplateClient(Template template, string content, ResourceProduct product) => template.Parse(content, product);
+        private async Task TemplateClient(Template template, string content, ResourceProduct product) => await template.Parse(content, product);
 
-        public void ScrapeTagsAndDate()
+        public async Task ScrapeTagsAndDate()
         {
             if (IsVideo())
             {
-                TemplateClient(new ScrapeVideo(), _content, _product);
+                await TemplateClient(new ScrapeVideo(), _content, _product);
             }
             else 
             {
-                TemplateClient(new ScrapeArticle(), _content, _product);
+                await TemplateClient(new ScrapeArticle(), _content, _product);
             }
         }
 

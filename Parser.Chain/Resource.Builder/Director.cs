@@ -24,7 +24,7 @@ namespace Resource.Builder
             _builder.SetInitialRating();
             _builder.SetOfficialDocumentation();
             _builder.CheckForVideo();
-            _builder.ScrapeTagsAndDate();
+            await _builder.ScrapeTagsAndDate();
 
             return _builder.GetResult();
         }
