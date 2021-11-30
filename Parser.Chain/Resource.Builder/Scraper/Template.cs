@@ -17,7 +17,8 @@ namespace Resource.Builder
             "xpath", "html",
             "github", "htmlagilitypack",
             "c#", "pascal", "DTO",
-            "design pattern", "stopwatch"
+            "design pattern", "stopwatch",
+            "linq", "c", "c++"
         };
 
         public async Task Parse(string content, ResourceProduct product)

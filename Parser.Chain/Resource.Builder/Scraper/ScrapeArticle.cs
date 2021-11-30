@@ -15,16 +15,25 @@ namespace Resource.Builder
             var foundTagsConcurrent = new ConcurrentBag<string>();
             var foundTags = new List<string>();
 
-            var content = _doc.DocumentNode.SelectNodes("//p");
-
-            if (content is null)
-                throw new Exception();
+            var paragraphs = _doc.DocumentNode.SelectNodes("//p");
+            var bullets = _doc.DocumentNode.SelectNodes("//li");
 
             StringBuilder sb = new StringBuilder();
 
-            foreach (var item in content)
+            if (paragraphs is not null)
             {
-                sb.Append(item.InnerText.ToLower() + " ");
+                foreach (var item in paragraphs)
+                {
+                    sb.Append(item.InnerText.ToLower() + " ");
+                }
+            }
+
+            if (bullets is not null)
+            {
+                foreach (var item in bullets)
+                {
+                    sb.Append(item.InnerText.ToLower() + " ");
+                }
             }
 
             var cleanedText = sb.ToString();
